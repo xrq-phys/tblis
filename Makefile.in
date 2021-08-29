@@ -167,11 +167,14 @@ host_triplet = @host@
 @ENABLE_A64FX_FALSE@@ENABLE_NEOVERSEV1_TRUE@am__append_54 = src/configs/a64fx/bli_vl.c \
 @ENABLE_A64FX_FALSE@@ENABLE_NEOVERSEV1_TRUE@                                src/configs/a64fx/bli_gemm_armsve_asm_2vx10_unindexed.c
 
+@ENABLE_AAPLMX_TRUE@am__append_55 = lib/libaaplmx.la
+@ENABLE_AAPLMX_TRUE@am__append_56 = lib/libaaplmx.la
+@ENABLE_AAPLMX_TRUE@am__append_57 = src/configs/aaplmx/config.cxx
 noinst_PROGRAMS = bin/test$(EXEEXT) $(am__EXEEXT_1) $(am__EXEEXT_2) \
 	$(am__EXEEXT_3)
-@ENABLE_BLAS_TRUE@am__append_55 = bin/bench bin/batched_bench #bin/dpd_bench
-@ENABLE_BLAS_TRUE@@ENABLE_SKX1_TRUE@am__append_56 = bin/skx_bench
-@ENABLE_BLAS_TRUE@@ENABLE_SKX1_FALSE@@ENABLE_SKX2_TRUE@am__append_57 = bin/skx_bench
+@ENABLE_BLAS_TRUE@am__append_58 = bin/bench bin/batched_bench #bin/dpd_bench
+@ENABLE_BLAS_TRUE@@ENABLE_SKX1_TRUE@am__append_59 = bin/skx_bench
+@ENABLE_BLAS_TRUE@@ENABLE_SKX1_FALSE@@ENABLE_SKX2_TRUE@am__append_60 = bin/skx_bench
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/as-gcc-inline-assembly.m4 \
@@ -261,6 +264,16 @@ am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
 @ENABLE_A64FX_TRUE@am_lib_liba64fx_la_rpath =
+lib_libaaplmx_la_LIBADD =
+am__lib_libaaplmx_la_SOURCES_DIST = src/configs/aaplmx/config_ker.cxx \
+	src/configs/aaplmx/bli_gemm_aaplmx_mac_d16x16.c \
+	src/configs/aaplmx/bli_gemm_aaplmx_mac_d32x16.c
+@ENABLE_AAPLMX_TRUE@am_lib_libaaplmx_la_OBJECTS =  \
+@ENABLE_AAPLMX_TRUE@	src/configs/aaplmx/config_ker.lo \
+@ENABLE_AAPLMX_TRUE@	src/configs/aaplmx/bli_gemm_aaplmx_mac_d16x16.lo \
+@ENABLE_AAPLMX_TRUE@	src/configs/aaplmx/bli_gemm_aaplmx_mac_d32x16.lo
+lib_libaaplmx_la_OBJECTS = $(am_lib_libaaplmx_la_OBJECTS)
+@ENABLE_AAPLMX_TRUE@am_lib_libaaplmx_la_rpath =
 lib_libbulldozer_la_LIBADD =
 am__lib_libbulldozer_la_SOURCES_DIST =  \
 	src/configs/bulldozer/bli_gemm_asm_d4x6_fma4.c \
@@ -426,7 +439,7 @@ lib_libtblis_la_DEPENDENCIES = src/external/tci/lib/libtci.la \
 	$(am__append_22) $(am__append_25) $(am__append_28) \
 	$(am__append_31) $(am__append_36) $(am__append_39) \
 	$(am__append_42) $(am__append_45) $(am__append_49) \
-	$(am__append_52)
+	$(am__append_52) $(am__append_56)
 am__lib_libtblis_la_SOURCES_DIST = src/iface/1t/add.cxx \
 	src/iface/1t/dot.cxx src/iface/1t/reduce.cxx \
 	src/iface/1t/scale.cxx src/iface/1t/set.cxx \
@@ -466,7 +479,8 @@ am__lib_libtblis_la_SOURCES_DIST = src/iface/1t/add.cxx \
 	src/configs/skx2/config.cxx src/configs/cortexa9/config.cxx \
 	src/configs/cortexa53/config.cxx \
 	src/configs/thunderx2/config.cxx src/configs/a64fx/config.cxx \
-	src/configs/neoversev1/config.cxx
+	src/configs/neoversev1/config.cxx \
+	src/configs/aaplmx/config.cxx
 @ENABLE_BULLDOZER_TRUE@am__objects_4 =  \
 @ENABLE_BULLDOZER_TRUE@	src/configs/bulldozer/config.lo
 @ENABLE_PILEDRIVER_TRUE@am__objects_5 =  \
@@ -491,6 +505,7 @@ am__lib_libtblis_la_SOURCES_DIST = src/iface/1t/add.cxx \
 @ENABLE_A64FX_TRUE@am__objects_18 = src/configs/a64fx/config.lo
 @ENABLE_NEOVERSEV1_TRUE@am__objects_19 =  \
 @ENABLE_NEOVERSEV1_TRUE@	src/configs/neoversev1/config.lo
+@ENABLE_AAPLMX_TRUE@am__objects_20 = src/configs/aaplmx/config.lo
 am_lib_libtblis_la_OBJECTS = src/iface/1t/add.lo src/iface/1t/dot.lo \
 	src/iface/1t/reduce.lo src/iface/1t/scale.lo \
 	src/iface/1t/set.lo src/iface/1t/shift.lo src/iface/3t/mult.lo \
@@ -523,25 +538,26 @@ am_lib_libtblis_la_OBJECTS = src/iface/1t/add.lo src/iface/1t/dot.lo \
 	$(am__objects_8) $(am__objects_9) $(am__objects_10) \
 	$(am__objects_11) $(am__objects_12) $(am__objects_13) \
 	$(am__objects_14) $(am__objects_15) $(am__objects_16) \
-	$(am__objects_17) $(am__objects_18) $(am__objects_19)
+	$(am__objects_17) $(am__objects_18) $(am__objects_19) \
+	$(am__objects_20)
 lib_libtblis_la_OBJECTS = $(am_lib_libtblis_la_OBJECTS)
 lib_libthunderx2_la_LIBADD =
 am__lib_libthunderx2_la_SOURCES_DIST =  \
 	src/configs/thunderx2/config_ker.cxx \
 	src/configs/cortexa53/bli_gemm_asm_d6x8.c
-@ENABLE_CORTEXA53_FALSE@@ENABLE_THUNDERX2_TRUE@am__objects_20 = src/configs/cortexa53/lib_libthunderx2_la-bli_gemm_asm_d6x8.lo
+@ENABLE_CORTEXA53_FALSE@@ENABLE_THUNDERX2_TRUE@am__objects_21 = src/configs/cortexa53/lib_libthunderx2_la-bli_gemm_asm_d6x8.lo
 @ENABLE_THUNDERX2_TRUE@am_lib_libthunderx2_la_OBJECTS =  \
 @ENABLE_THUNDERX2_TRUE@	src/configs/thunderx2/config_ker.lo \
-@ENABLE_THUNDERX2_TRUE@	$(am__objects_20)
+@ENABLE_THUNDERX2_TRUE@	$(am__objects_21)
 lib_libthunderx2_la_OBJECTS = $(am_lib_libthunderx2_la_OBJECTS)
 @ENABLE_THUNDERX2_TRUE@am_lib_libthunderx2_la_rpath =
 lib_libzen_la_LIBADD =
 am__lib_libzen_la_SOURCES_DIST = src/configs/zen/config_ker.cxx \
 	src/configs/haswell/bli_gemm_asm_d6x8.c
-@ENABLE_HASWELL_FALSE@@ENABLE_ZEN_TRUE@am__objects_21 = src/configs/haswell/lib_libzen_la-bli_gemm_asm_d6x8.lo
+@ENABLE_HASWELL_FALSE@@ENABLE_ZEN_TRUE@am__objects_22 = src/configs/haswell/lib_libzen_la-bli_gemm_asm_d6x8.lo
 @ENABLE_ZEN_TRUE@am_lib_libzen_la_OBJECTS =  \
 @ENABLE_ZEN_TRUE@	src/configs/zen/lib_libzen_la-config_ker.lo \
-@ENABLE_ZEN_TRUE@	$(am__objects_21)
+@ENABLE_ZEN_TRUE@	$(am__objects_22)
 lib_libzen_la_OBJECTS = $(am_lib_libzen_la_OBJECTS)
 lib_libzen_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
@@ -592,6 +608,10 @@ am__depfiles_remade = src/configs/$(DEPDIR)/configs.Plo \
 	src/configs/a64fx/$(DEPDIR)/lib_liba64fx_la-bli_vl.Plo \
 	src/configs/a64fx/$(DEPDIR)/lib_libneoversev1_la-bli_gemm_armsve_asm_2vx10_unindexed.Plo \
 	src/configs/a64fx/$(DEPDIR)/lib_libneoversev1_la-bli_vl.Plo \
+	src/configs/aaplmx/$(DEPDIR)/bli_gemm_aaplmx_mac_d16x16.Plo \
+	src/configs/aaplmx/$(DEPDIR)/bli_gemm_aaplmx_mac_d32x16.Plo \
+	src/configs/aaplmx/$(DEPDIR)/config.Plo \
+	src/configs/aaplmx/$(DEPDIR)/config_ker.Plo \
 	src/configs/bulldozer/$(DEPDIR)/config.Plo \
 	src/configs/bulldozer/$(DEPDIR)/lib_libbulldozer_la-bli_gemm_asm_d4x6_fma4.Plo \
 	src/configs/bulldozer/$(DEPDIR)/lib_libbulldozer_la-config_ker.Plo \
@@ -727,11 +747,11 @@ AM_V_CXXLD = $(am__v_CXXLD_@AM_V@)
 am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
-SOURCES = $(lib_liba64fx_la_SOURCES) $(lib_libbulldozer_la_SOURCES) \
-	$(lib_libcore2_la_SOURCES) $(lib_libcortexa53_la_SOURCES) \
-	$(lib_libcortexa9_la_SOURCES) $(lib_libexcavator_la_SOURCES) \
-	$(lib_libhaswell_la_SOURCES) $(lib_libknl_la_SOURCES) \
-	$(lib_libneoversev1_la_SOURCES) \
+SOURCES = $(lib_liba64fx_la_SOURCES) $(lib_libaaplmx_la_SOURCES) \
+	$(lib_libbulldozer_la_SOURCES) $(lib_libcore2_la_SOURCES) \
+	$(lib_libcortexa53_la_SOURCES) $(lib_libcortexa9_la_SOURCES) \
+	$(lib_libexcavator_la_SOURCES) $(lib_libhaswell_la_SOURCES) \
+	$(lib_libknl_la_SOURCES) $(lib_libneoversev1_la_SOURCES) \
 	$(lib_libpiledriver_la_SOURCES) $(lib_libreference_la_SOURCES) \
 	$(lib_libsandybridge_la_SOURCES) $(lib_libskx1_la_SOURCES) \
 	$(lib_libskx2_la_SOURCES) $(lib_libtblis_la_SOURCES) \
@@ -739,6 +759,7 @@ SOURCES = $(lib_liba64fx_la_SOURCES) $(lib_libbulldozer_la_SOURCES) \
 	$(bin_batched_bench_SOURCES) $(bin_bench_SOURCES) \
 	$(bin_skx_bench_SOURCES) $(bin_test_SOURCES)
 DIST_SOURCES = $(am__lib_liba64fx_la_SOURCES_DIST) \
+	$(am__lib_libaaplmx_la_SOURCES_DIST) \
 	$(am__lib_libbulldozer_la_SOURCES_DIST) \
 	$(am__lib_libcore2_la_SOURCES_DIST) \
 	$(am__lib_libcortexa53_la_SOURCES_DIST) \
@@ -1017,7 +1038,8 @@ lib_libtblis_la_SOURCES = src/iface/1t/add.cxx src/iface/1t/dot.cxx \
 	$(am__append_20) $(am__append_23) $(am__append_26) \
 	$(am__append_29) $(am__append_32) $(am__append_33) \
 	$(am__append_37) $(am__append_40) $(am__append_43) \
-	$(am__append_46) $(am__append_50) $(am__append_53)
+	$(am__append_46) $(am__append_50) $(am__append_53) \
+	$(am__append_57)
 pkginclude_HEADERS = src/tblis.h src/tblis_config.h
 utilincludedir = $(pkgincludedir)/util
 utilinclude_HEADERS = \
@@ -1108,14 +1130,14 @@ noinst_LTLIBRARIES = $(am__append_2) $(am__append_4) $(am__append_7) \
 	$(am__append_21) $(am__append_24) $(am__append_27) \
 	$(am__append_30) $(am__append_35) $(am__append_38) \
 	$(am__append_41) $(am__append_44) $(am__append_48) \
-	$(am__append_51)
+	$(am__append_51) $(am__append_55)
 lib_libtblis_la_LIBADD = src/external/tci/lib/libtci.la \
 	$(am__append_3) $(am__append_5) $(am__append_8) \
 	$(am__append_11) $(am__append_15) $(am__append_19) \
 	$(am__append_22) $(am__append_25) $(am__append_28) \
 	$(am__append_31) $(am__append_36) $(am__append_39) \
 	$(am__append_42) $(am__append_45) $(am__append_49) \
-	$(am__append_52)
+	$(am__append_52) $(am__append_56)
 @ENABLE_REFERENCE_TRUE@lib_libreference_la_SOURCES = src/configs/reference/config.cxx
 @ENABLE_REFERENCE_TRUE@lib_libreference_la_CFLAGS = -O3
 @ENABLE_REFERENCE_TRUE@lib_libreference_la_CXXFLAGS = -O3
@@ -1232,6 +1254,10 @@ lib_libtblis_la_LIBADD = src/external/tci/lib/libtci.la \
 @ENABLE_NEOVERSEV1_TRUE@	src/configs/neoversev1/config_ker.cxx \
 @ENABLE_NEOVERSEV1_TRUE@	$(am__append_54)
 @ENABLE_NEOVERSEV1_TRUE@lib_libneoversev1_la_CFLAGS = -march=armv8-a+sve
+@ENABLE_AAPLMX_TRUE@lib_libaaplmx_la_SOURCES = src/configs/aaplmx/config_ker.cxx \
+@ENABLE_AAPLMX_TRUE@                          src/configs/aaplmx/bli_gemm_aaplmx_mac_d16x16.c \
+@ENABLE_AAPLMX_TRUE@                          src/configs/aaplmx/bli_gemm_aaplmx_mac_d32x16.c
+
 bin_test_SOURCES = test/test.cxx \
                    \
                    test/1t/dot.cxx \
@@ -1407,6 +1433,23 @@ lib/$(am__dirstamp):
 
 lib/liba64fx.la: $(lib_liba64fx_la_OBJECTS) $(lib_liba64fx_la_DEPENDENCIES) $(EXTRA_lib_liba64fx_la_DEPENDENCIES) lib/$(am__dirstamp)
 	$(AM_V_CXXLD)$(CXXLINK) $(am_lib_liba64fx_la_rpath) $(lib_liba64fx_la_OBJECTS) $(lib_liba64fx_la_LIBADD) $(LIBS)
+src/configs/aaplmx/$(am__dirstamp):
+	@$(MKDIR_P) src/configs/aaplmx
+	@: > src/configs/aaplmx/$(am__dirstamp)
+src/configs/aaplmx/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/configs/aaplmx/$(DEPDIR)
+	@: > src/configs/aaplmx/$(DEPDIR)/$(am__dirstamp)
+src/configs/aaplmx/config_ker.lo: src/configs/aaplmx/$(am__dirstamp) \
+	src/configs/aaplmx/$(DEPDIR)/$(am__dirstamp)
+src/configs/aaplmx/bli_gemm_aaplmx_mac_d16x16.lo:  \
+	src/configs/aaplmx/$(am__dirstamp) \
+	src/configs/aaplmx/$(DEPDIR)/$(am__dirstamp)
+src/configs/aaplmx/bli_gemm_aaplmx_mac_d32x16.lo:  \
+	src/configs/aaplmx/$(am__dirstamp) \
+	src/configs/aaplmx/$(DEPDIR)/$(am__dirstamp)
+
+lib/libaaplmx.la: $(lib_libaaplmx_la_OBJECTS) $(lib_libaaplmx_la_DEPENDENCIES) $(EXTRA_lib_libaaplmx_la_DEPENDENCIES) lib/$(am__dirstamp)
+	$(AM_V_CXXLD)$(CXXLINK) $(am_lib_libaaplmx_la_rpath) $(lib_libaaplmx_la_OBJECTS) $(lib_libaaplmx_la_LIBADD) $(LIBS)
 src/configs/bulldozer/$(am__dirstamp):
 	@$(MKDIR_P) src/configs/bulldozer
 	@: > src/configs/bulldozer/$(am__dirstamp)
@@ -1853,6 +1896,8 @@ src/configs/a64fx/config.lo: src/configs/a64fx/$(am__dirstamp) \
 src/configs/neoversev1/config.lo:  \
 	src/configs/neoversev1/$(am__dirstamp) \
 	src/configs/neoversev1/$(DEPDIR)/$(am__dirstamp)
+src/configs/aaplmx/config.lo: src/configs/aaplmx/$(am__dirstamp) \
+	src/configs/aaplmx/$(DEPDIR)/$(am__dirstamp)
 
 lib/libtblis.la: $(lib_libtblis_la_OBJECTS) $(lib_libtblis_la_DEPENDENCIES) $(EXTRA_lib_libtblis_la_DEPENDENCIES) lib/$(am__dirstamp)
 	$(AM_V_CXXLD)$(CXXLINK) -rpath $(libdir) $(lib_libtblis_la_OBJECTS) $(lib_libtblis_la_LIBADD) $(LIBS)
@@ -1960,6 +2005,8 @@ mostlyclean-compile:
 	-rm -f src/configs/*.lo
 	-rm -f src/configs/a64fx/*.$(OBJEXT)
 	-rm -f src/configs/a64fx/*.lo
+	-rm -f src/configs/aaplmx/*.$(OBJEXT)
+	-rm -f src/configs/aaplmx/*.lo
 	-rm -f src/configs/bulldozer/*.$(OBJEXT)
 	-rm -f src/configs/bulldozer/*.lo
 	-rm -f src/configs/core2/*.$(OBJEXT)
@@ -2031,6 +2078,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/configs/a64fx/$(DEPDIR)/lib_liba64fx_la-bli_vl.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/configs/a64fx/$(DEPDIR)/lib_libneoversev1_la-bli_gemm_armsve_asm_2vx10_unindexed.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/configs/a64fx/$(DEPDIR)/lib_libneoversev1_la-bli_vl.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/configs/aaplmx/$(DEPDIR)/bli_gemm_aaplmx_mac_d16x16.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/configs/aaplmx/$(DEPDIR)/bli_gemm_aaplmx_mac_d32x16.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/configs/aaplmx/$(DEPDIR)/config.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/configs/aaplmx/$(DEPDIR)/config_ker.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/configs/bulldozer/$(DEPDIR)/config.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/configs/bulldozer/$(DEPDIR)/lib_libbulldozer_la-bli_gemm_asm_d4x6_fma4.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/configs/bulldozer/$(DEPDIR)/lib_libbulldozer_la-config_ker.Plo@am__quote@ # am--include-marker
@@ -2451,6 +2502,7 @@ clean-libtool:
 	-rm -rf lib/.libs lib/_libs
 	-rm -rf src/configs/.libs src/configs/_libs
 	-rm -rf src/configs/a64fx/.libs src/configs/a64fx/_libs
+	-rm -rf src/configs/aaplmx/.libs src/configs/aaplmx/_libs
 	-rm -rf src/configs/bulldozer/.libs src/configs/bulldozer/_libs
 	-rm -rf src/configs/core2/.libs src/configs/core2/_libs
 	-rm -rf src/configs/cortexa53/.libs src/configs/cortexa53/_libs
@@ -2972,6 +3024,8 @@ distclean-generic:
 	-rm -f src/configs/$(am__dirstamp)
 	-rm -f src/configs/a64fx/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/configs/a64fx/$(am__dirstamp)
+	-rm -f src/configs/aaplmx/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/configs/aaplmx/$(am__dirstamp)
 	-rm -f src/configs/bulldozer/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/configs/bulldozer/$(am__dirstamp)
 	-rm -f src/configs/core2/$(DEPDIR)/$(am__dirstamp)
@@ -3055,6 +3109,10 @@ distclean: distclean-recursive
 	-rm -f src/configs/a64fx/$(DEPDIR)/lib_liba64fx_la-bli_vl.Plo
 	-rm -f src/configs/a64fx/$(DEPDIR)/lib_libneoversev1_la-bli_gemm_armsve_asm_2vx10_unindexed.Plo
 	-rm -f src/configs/a64fx/$(DEPDIR)/lib_libneoversev1_la-bli_vl.Plo
+	-rm -f src/configs/aaplmx/$(DEPDIR)/bli_gemm_aaplmx_mac_d16x16.Plo
+	-rm -f src/configs/aaplmx/$(DEPDIR)/bli_gemm_aaplmx_mac_d32x16.Plo
+	-rm -f src/configs/aaplmx/$(DEPDIR)/config.Plo
+	-rm -f src/configs/aaplmx/$(DEPDIR)/config_ker.Plo
 	-rm -f src/configs/bulldozer/$(DEPDIR)/config.Plo
 	-rm -f src/configs/bulldozer/$(DEPDIR)/lib_libbulldozer_la-bli_gemm_asm_d4x6_fma4.Plo
 	-rm -f src/configs/bulldozer/$(DEPDIR)/lib_libbulldozer_la-config_ker.Plo
@@ -3225,6 +3283,10 @@ maintainer-clean: maintainer-clean-recursive
 	-rm -f src/configs/a64fx/$(DEPDIR)/lib_liba64fx_la-bli_vl.Plo
 	-rm -f src/configs/a64fx/$(DEPDIR)/lib_libneoversev1_la-bli_gemm_armsve_asm_2vx10_unindexed.Plo
 	-rm -f src/configs/a64fx/$(DEPDIR)/lib_libneoversev1_la-bli_vl.Plo
+	-rm -f src/configs/aaplmx/$(DEPDIR)/bli_gemm_aaplmx_mac_d16x16.Plo
+	-rm -f src/configs/aaplmx/$(DEPDIR)/bli_gemm_aaplmx_mac_d32x16.Plo
+	-rm -f src/configs/aaplmx/$(DEPDIR)/config.Plo
+	-rm -f src/configs/aaplmx/$(DEPDIR)/config_ker.Plo
 	-rm -f src/configs/bulldozer/$(DEPDIR)/config.Plo
 	-rm -f src/configs/bulldozer/$(DEPDIR)/lib_libbulldozer_la-bli_gemm_asm_d4x6_fma4.Plo
 	-rm -f src/configs/bulldozer/$(DEPDIR)/lib_libbulldozer_la-config_ker.Plo

@@ -717,6 +717,8 @@ ENABLE_BULLDOZER_FALSE
 ENABLE_BULLDOZER_TRUE
 ENABLE_BGQ_FALSE
 ENABLE_BGQ_TRUE
+ENABLE_AAPLMX_FALSE
+ENABLE_AAPLMX_TRUE
 ENABLE_NEOVERSEV1_FALSE
 ENABLE_NEOVERSEV1_TRUE
 ENABLE_A64FX_FALSE
@@ -6742,7 +6744,7 @@ configs=`echo $enable_config | sed 's/x86/intel,amd/' \
                              | sed 's/,/ /g'`
 
 for config in $configs; do
-    if ( echo $config | $EGREP -qv '^(reference|core2|sandybridge|haswell|skx1|skx2|knl|bulldozer|piledriver|excavator|zen|cortexa9|cortexa53|thunderx2|a64fx|neoversev1)$' ); then
+    if ( echo $config | $EGREP -qv '^(reference|core2|sandybridge|haswell|skx1|skx2|knl|bulldozer|piledriver|excavator|zen|cortexa9|cortexa53|thunderx2|a64fx|neoversev1|aaplmx)$' ); then
         as_fn_error $? "Unknown configuration $config" "$LINENO" 5
     fi
 done
@@ -7123,6 +7125,14 @@ fi
 else
   ENABLE_NEOVERSEV1_TRUE='#'
   ENABLE_NEOVERSEV1_FALSE=
+fi
+
+ if echo $configs | grep -q aaplmx; then
+  ENABLE_AAPLMX_TRUE=
+  ENABLE_AAPLMX_FALSE='#'
+else
+  ENABLE_AAPLMX_TRUE='#'
+  ENABLE_AAPLMX_FALSE=
 fi
 
  if echo $configs | grep -q bgq; then
@@ -18587,6 +18597,10 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${ENABLE_NEOVERSEV1_TRUE}" && test -z "${ENABLE_NEOVERSEV1_FALSE}"; then
   as_fn_error $? "conditional \"ENABLE_NEOVERSEV1\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${ENABLE_AAPLMX_TRUE}" && test -z "${ENABLE_AAPLMX_FALSE}"; then
+  as_fn_error $? "conditional \"ENABLE_AAPLMX\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${ENABLE_BGQ_TRUE}" && test -z "${ENABLE_BGQ_FALSE}"; then

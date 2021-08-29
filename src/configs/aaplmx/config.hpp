@@ -9,6 +9,11 @@ EXTERN_BLIS_GEMM_UKR(bli_dgemm_aaplmx_mac_32x16);
 namespace tblis
 {
 
+EXTERN_PACK_NN_UKR(float, aaplmx_spackm_asm_32xk_sidem);
+EXTERN_PACK_NN_UKR(float, aaplmx_spackm_asm_32xk_siden);
+EXTERN_PACK_NN_UKR(double, aaplmx_dpackm_asm_32xk);
+EXTERN_PACK_NN_UKR(double, aaplmx_dpackm_asm_16xk);
+
 extern int aaplmx_check();
 
 TBLIS_BEGIN_CONFIG(aaplmx)
@@ -29,6 +34,8 @@ TBLIS_BEGIN_CONFIG(aaplmx)
                                bli_dgemm_aaplmx_mac_32x16,
                                _,
                                _)
+    TBLIS_CONFIG_PACK_NN_MR_UKR(aaplmx_spackm_asm_32xk_sidem, aaplmx_dpackm_asm_32xk, _, _)
+    TBLIS_CONFIG_PACK_NN_NR_UKR(aaplmx_spackm_asm_32xk_siden, aaplmx_dpackm_asm_16xk, _, _)
 
     TBLIS_CONFIG_GEMM_ROW_MAJOR(false, false, _, _)
     TBLIS_CONFIG_GEMM_FLIP_UKR(true, true, _, _)

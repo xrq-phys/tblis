@@ -417,7 +417,10 @@ lib_libtblis_la_LIBADD += lib/libaaplmx.la
 lib_libtblis_la_SOURCES += src/configs/aaplmx/config.cxx
 lib_libaaplmx_la_SOURCES = src/configs/aaplmx/config_ker.cxx \
                           src/configs/aaplmx/bli_gemm_aaplmx_mac_d16x16.c \
-                          src/configs/aaplmx/bli_gemm_aaplmx_mac_d32x16.c
+                          src/configs/aaplmx/bli_gemm_aaplmx_mac_d32x16.c \
+                          src/configs/aaplmx/bli_packm_aaplmx_mac_d16xk.c \
+                          src/configs/aaplmx/bli_packm_aaplmx_mac_d32xk.c \
+                          src/configs/aaplmx/bli_packm_aaplmx_mac_s32xk.c
 endif
 
 #

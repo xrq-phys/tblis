@@ -267,11 +267,17 @@ am__v_lt_1 =
 lib_libaaplmx_la_LIBADD =
 am__lib_libaaplmx_la_SOURCES_DIST = src/configs/aaplmx/config_ker.cxx \
 	src/configs/aaplmx/bli_gemm_aaplmx_mac_d16x16.c \
-	src/configs/aaplmx/bli_gemm_aaplmx_mac_d32x16.c
+	src/configs/aaplmx/bli_gemm_aaplmx_mac_d32x16.c \
+	src/configs/aaplmx/bli_packm_aaplmx_mac_d16xk.c \
+	src/configs/aaplmx/bli_packm_aaplmx_mac_d32xk.c \
+	src/configs/aaplmx/bli_packm_aaplmx_mac_s32xk.c
 @ENABLE_AAPLMX_TRUE@am_lib_libaaplmx_la_OBJECTS =  \
 @ENABLE_AAPLMX_TRUE@	src/configs/aaplmx/config_ker.lo \
 @ENABLE_AAPLMX_TRUE@	src/configs/aaplmx/bli_gemm_aaplmx_mac_d16x16.lo \
-@ENABLE_AAPLMX_TRUE@	src/configs/aaplmx/bli_gemm_aaplmx_mac_d32x16.lo
+@ENABLE_AAPLMX_TRUE@	src/configs/aaplmx/bli_gemm_aaplmx_mac_d32x16.lo \
+@ENABLE_AAPLMX_TRUE@	src/configs/aaplmx/bli_packm_aaplmx_mac_d16xk.lo \
+@ENABLE_AAPLMX_TRUE@	src/configs/aaplmx/bli_packm_aaplmx_mac_d32xk.lo \
+@ENABLE_AAPLMX_TRUE@	src/configs/aaplmx/bli_packm_aaplmx_mac_s32xk.lo
 lib_libaaplmx_la_OBJECTS = $(am_lib_libaaplmx_la_OBJECTS)
 @ENABLE_AAPLMX_TRUE@am_lib_libaaplmx_la_rpath =
 lib_libbulldozer_la_LIBADD =
@@ -610,6 +616,9 @@ am__depfiles_remade = src/configs/$(DEPDIR)/configs.Plo \
 	src/configs/a64fx/$(DEPDIR)/lib_libneoversev1_la-bli_vl.Plo \
 	src/configs/aaplmx/$(DEPDIR)/bli_gemm_aaplmx_mac_d16x16.Plo \
 	src/configs/aaplmx/$(DEPDIR)/bli_gemm_aaplmx_mac_d32x16.Plo \
+	src/configs/aaplmx/$(DEPDIR)/bli_packm_aaplmx_mac_d16xk.Plo \
+	src/configs/aaplmx/$(DEPDIR)/bli_packm_aaplmx_mac_d32xk.Plo \
+	src/configs/aaplmx/$(DEPDIR)/bli_packm_aaplmx_mac_s32xk.Plo \
 	src/configs/aaplmx/$(DEPDIR)/config.Plo \
 	src/configs/aaplmx/$(DEPDIR)/config_ker.Plo \
 	src/configs/bulldozer/$(DEPDIR)/config.Plo \
@@ -1256,7 +1265,10 @@ lib_libtblis_la_LIBADD = src/external/tci/lib/libtci.la \
 @ENABLE_NEOVERSEV1_TRUE@lib_libneoversev1_la_CFLAGS = -march=armv8-a+sve
 @ENABLE_AAPLMX_TRUE@lib_libaaplmx_la_SOURCES = src/configs/aaplmx/config_ker.cxx \
 @ENABLE_AAPLMX_TRUE@                          src/configs/aaplmx/bli_gemm_aaplmx_mac_d16x16.c \
-@ENABLE_AAPLMX_TRUE@                          src/configs/aaplmx/bli_gemm_aaplmx_mac_d32x16.c
+@ENABLE_AAPLMX_TRUE@                          src/configs/aaplmx/bli_gemm_aaplmx_mac_d32x16.c \
+@ENABLE_AAPLMX_TRUE@                          src/configs/aaplmx/bli_packm_aaplmx_mac_d16xk.c \
+@ENABLE_AAPLMX_TRUE@                          src/configs/aaplmx/bli_packm_aaplmx_mac_d32xk.c \
+@ENABLE_AAPLMX_TRUE@                          src/configs/aaplmx/bli_packm_aaplmx_mac_s32xk.c
 
 bin_test_SOURCES = test/test.cxx \
                    \
@@ -1445,6 +1457,15 @@ src/configs/aaplmx/bli_gemm_aaplmx_mac_d16x16.lo:  \
 	src/configs/aaplmx/$(am__dirstamp) \
 	src/configs/aaplmx/$(DEPDIR)/$(am__dirstamp)
 src/configs/aaplmx/bli_gemm_aaplmx_mac_d32x16.lo:  \
+	src/configs/aaplmx/$(am__dirstamp) \
+	src/configs/aaplmx/$(DEPDIR)/$(am__dirstamp)
+src/configs/aaplmx/bli_packm_aaplmx_mac_d16xk.lo:  \
+	src/configs/aaplmx/$(am__dirstamp) \
+	src/configs/aaplmx/$(DEPDIR)/$(am__dirstamp)
+src/configs/aaplmx/bli_packm_aaplmx_mac_d32xk.lo:  \
+	src/configs/aaplmx/$(am__dirstamp) \
+	src/configs/aaplmx/$(DEPDIR)/$(am__dirstamp)
+src/configs/aaplmx/bli_packm_aaplmx_mac_s32xk.lo:  \
 	src/configs/aaplmx/$(am__dirstamp) \
 	src/configs/aaplmx/$(DEPDIR)/$(am__dirstamp)
 
@@ -2080,6 +2101,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/configs/a64fx/$(DEPDIR)/lib_libneoversev1_la-bli_vl.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/configs/aaplmx/$(DEPDIR)/bli_gemm_aaplmx_mac_d16x16.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/configs/aaplmx/$(DEPDIR)/bli_gemm_aaplmx_mac_d32x16.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/configs/aaplmx/$(DEPDIR)/bli_packm_aaplmx_mac_d16xk.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/configs/aaplmx/$(DEPDIR)/bli_packm_aaplmx_mac_d32xk.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/configs/aaplmx/$(DEPDIR)/bli_packm_aaplmx_mac_s32xk.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/configs/aaplmx/$(DEPDIR)/config.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/configs/aaplmx/$(DEPDIR)/config_ker.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/configs/bulldozer/$(DEPDIR)/config.Plo@am__quote@ # am--include-marker
@@ -3111,6 +3135,9 @@ distclean: distclean-recursive
 	-rm -f src/configs/a64fx/$(DEPDIR)/lib_libneoversev1_la-bli_vl.Plo
 	-rm -f src/configs/aaplmx/$(DEPDIR)/bli_gemm_aaplmx_mac_d16x16.Plo
 	-rm -f src/configs/aaplmx/$(DEPDIR)/bli_gemm_aaplmx_mac_d32x16.Plo
+	-rm -f src/configs/aaplmx/$(DEPDIR)/bli_packm_aaplmx_mac_d16xk.Plo
+	-rm -f src/configs/aaplmx/$(DEPDIR)/bli_packm_aaplmx_mac_d32xk.Plo
+	-rm -f src/configs/aaplmx/$(DEPDIR)/bli_packm_aaplmx_mac_s32xk.Plo
 	-rm -f src/configs/aaplmx/$(DEPDIR)/config.Plo
 	-rm -f src/configs/aaplmx/$(DEPDIR)/config_ker.Plo
 	-rm -f src/configs/bulldozer/$(DEPDIR)/config.Plo
@@ -3285,6 +3312,9 @@ maintainer-clean: maintainer-clean-recursive
 	-rm -f src/configs/a64fx/$(DEPDIR)/lib_libneoversev1_la-bli_vl.Plo
 	-rm -f src/configs/aaplmx/$(DEPDIR)/bli_gemm_aaplmx_mac_d16x16.Plo
 	-rm -f src/configs/aaplmx/$(DEPDIR)/bli_gemm_aaplmx_mac_d32x16.Plo
+	-rm -f src/configs/aaplmx/$(DEPDIR)/bli_packm_aaplmx_mac_d16xk.Plo
+	-rm -f src/configs/aaplmx/$(DEPDIR)/bli_packm_aaplmx_mac_d32xk.Plo
+	-rm -f src/configs/aaplmx/$(DEPDIR)/bli_packm_aaplmx_mac_s32xk.Plo
 	-rm -f src/configs/aaplmx/$(DEPDIR)/config.Plo
 	-rm -f src/configs/aaplmx/$(DEPDIR)/config_ker.Plo
 	-rm -f src/configs/bulldozer/$(DEPDIR)/config.Plo

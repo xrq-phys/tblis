@@ -23,13 +23,17 @@ void bli_sgemm_aaplmx_mac_32x32
        float*     restrict a,
        float*     restrict b,
        float*     restrict beta,
-       float*     restrict c, inc_t rs_c, inc_t cs_c,
+       float*     restrict c0, inc_t rs_c0, inc_t cs_c0,
        auxinfo_t* restrict data,
        cntx_t*    restrict cntx
      )
 {
     void* a_next = bli_auxinfo_next_a( data );
     void* b_next = bli_auxinfo_next_b( data );
+    inc_t rs_c = rs_c0;
+    inc_t cs_c = cs_c0;
+    float* c = c0;
+    float* c_= c0;
 
     // As current the RE work has not discovered any
     //  broadcasting-load instruction yet, use this
@@ -46,10 +50,18 @@ void bli_sgemm_aaplmx_mac_32x32
               data, cntx
             );
 
-    // TODO: Support generic strided storage.
+    // Direct support for generic strided storage is not available yet due to no
+    //  instruction supporting scattered-storage is found til now.
     if ( rs_c != 1 )
     {
-        return;
+        c = ( float* )malloc( 32*32 * sizeof( float ) );
+        c_= c;
+        rs_c = 1;
+        cs_c = 32;
+        if ( *beta != 0.0 )
+            for ( int j = 0; j < 32; ++j )
+                for ( int i = 0; i < 32; ++i )
+                    c_[ i * rs_c + j * cs_c ] = c0[ i * rs_c0 + j * cs_c0 ];
     }
 
     // Duplicate alpha & beta.
@@ -216,6 +228,16 @@ void bli_sgemm_aaplmx_mac_32x32
     }
 
     AMX_STOP();
+
+    // Compatibility layer.
+    if ( rs_c0 != 1 )
+    {
+        for ( int j = 0; j < 32; ++j )
+            for ( int i = 0; i < 32; ++i )
+                c0[ i * rs_c0 + j * cs_c0 ] = c_[ i * rs_c + j * cs_c ];
+
+        free(c_);
+    }
 }
 
 

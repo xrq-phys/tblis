@@ -411,6 +411,15 @@ endif
 lib_libneoversev1_la_CFLAGS = -march=armv8-a+sve
 endif
 
+if ENABLE_AAPLMX
+noinst_LTLIBRARIES += lib/libaaplmx.la
+lib_libtblis_la_LIBADD += lib/libaaplmx.la
+lib_libtblis_la_SOURCES += src/configs/aaplmx/config.cxx
+lib_libaaplmx_la_SOURCES = src/configs/aaplmx/config_ker.cxx \
+                          src/configs/aaplmx/bli_gemm_aaplmx_mac_d16x16.c \
+                          src/configs/aaplmx/bli_gemm_aaplmx_mac_d32x16.c
+endif
+
 #
 # IBM architectures
 #

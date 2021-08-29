@@ -223,7 +223,7 @@ configs=`echo $enable_config | sed 's/x86/intel,amd/' \
                              | sed 's/,/ /g'`
 
 for config in $configs; do
-    if ( echo $config | $EGREP -qv '^(reference|core2|sandybridge|haswell|skx1|skx2|knl|bulldozer|piledriver|excavator|zen|cortexa9|cortexa53|thunderx2|a64fx|neoversev1)$' ); then
+    if ( echo $config | $EGREP -qv '^(reference|core2|sandybridge|haswell|skx1|skx2|knl|bulldozer|piledriver|excavator|zen|cortexa9|cortexa53|thunderx2|a64fx|neoversev1|aaplmx)$' ); then
         AC_MSG_ERROR([Unknown configuration $config])
     fi
 done
@@ -430,6 +430,7 @@ AM_CONDITIONAL(ENABLE_CORTEXA53, [echo $configs | grep -q cortexa53])
 AM_CONDITIONAL(ENABLE_THUNDERX2, [echo $configs | grep -q thunderx2])
 AM_CONDITIONAL(ENABLE_A64FX, [echo $configs | grep -q a64fx])
 AM_CONDITIONAL(ENABLE_NEOVERSEV1, [echo $configs | grep -q neoversev1])
+AM_CONDITIONAL(ENABLE_AAPLMX, [echo $configs | grep -q aaplmx])
 AM_CONDITIONAL(ENABLE_BGQ, [echo $configs | grep -q bgq])
 AM_CONDITIONAL(ENABLE_BULLDOZER, [echo $configs | grep -q bulldozer])
 AM_CONDITIONAL(ENABLE_EXCAVATOR, [echo $configs | grep -q excavator])
